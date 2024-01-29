@@ -1,0 +1,21 @@
+#!/bin/sh
+
+if [ -z $ROOFS ]
+then
+    echo "ROOTFS directory is undefined."
+    exit
+fi
+
+mkdir /dev/shm
+
+mount --bind /proc $ROOTFS/proc
+mount --bind /dev $ROOTFS/dev
+mount --bind /sys $ROOTFS/sys
+mount --bind /data $ROOTFS/data
+mount --bind /sdcard $ROOTFS/sdcard
+
+mount -t tmpfs tmpfs $ROOTFS/tmp
+mount -t tmpfs tmpfs $ROOTFS/run
+mount -t tmpfs tmpfs $ROOTFS/dev/shm
+
+mount -t devpts devpts $ROOTFS/dev/pts

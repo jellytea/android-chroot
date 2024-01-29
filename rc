@@ -1,0 +1,13 @@
+#!/bin/sh
+
+export PATH=/bin:/sbin:/usr/local/bin
+
+. /etc/bashrc
+
+if [ ! -d /run/dbus ]
+then
+        mkdir /run/dbus
+        dbus-daemon --system
+fi
+
+/sbin/sshd
